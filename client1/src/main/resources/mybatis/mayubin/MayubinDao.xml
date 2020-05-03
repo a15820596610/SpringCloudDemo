@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.mayubin.MayubinDao">
+
+    <!--查询mayubin-->
+    <select id="queryMayubin"
+            parameterType="com.example.demo.domain.Mayubin"
+            resultType="com.example.demo.domain.Mayubin">
+        SELECT
+            t.id "id",
+            t.name "name",
+            t.phone  "phone"
+        FROM mayubin t
+    </select>
+
+    <!--插入MAYUBIN-->
+    <insert id= "insertMayubin">
+        insert into "Mayubin"(
+            id,
+            name,
+            phone
+            )
+        values(
+            #{id},
+            #{name},
+            #{phone}
+        )
+    </insert>
+
+    <!--更新Mayubin-->
+    <update id="updateMayubin"
+             parameterType="com.example.demo.domain.Mayubin">
+        update MAYUBIN
+            <set>
+                <if test="name != null and name != ''">
+                    name = #{name},
+                </if>
+                <if test="phone != null and phone != ''">
+                    phone = #{phone},
+                </if>
+            </set>
+        where id = #{id}
+    </update>
+
+</mapper>

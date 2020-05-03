@@ -1,0 +1,38 @@
+server:
+  port: 8701
+
+
+spring:
+  application:
+    name: client1 # 应用名称，会在Eureka中显示
+  datasource:
+    orcl:
+      jdbc-url: jdbc:oracle:thin:@192.168.71.128:1521:orcl
+      username: C##TEST001
+      password: Aa123123
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+    mayubin:
+      jdbc-url: jdbc:oracle:thin:@192.168.71.128:1521:mayubin
+      username: mayubin
+      password: Aa123123
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+
+
+eureka:
+  client:
+    service-url: # EurekaServer地址
+      defaultZone: http://127.0.0.1:8700/eureka
+    register-with-eureka: true #服务启动方启动时，会检测该参数是否为true，true会注册给eureka
+  instance:
+    prefer-ip-address: true # 当调用getHostname获取实例的hostname时，返回ip而不是host名称
+    ip-address: 127.0.0.1 # 指定自己的ip信息，不指定的话会自己寻找
+
+
+logging:
+  level:
+    com.example.demo.dao : debug
+
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.orcl.CourseDao">
+
+    <!--查询Course-->
+    <select id="queryCourse"
+            parameterType="com.example.demo.domain.Course"
+            resultType="com.example.demo.domain.Course">
+        SELECT
+        t.id "id",
+        t.name "name",
+        t.goal  "goal"
+        FROM "Course" t
+    </select>
+
+    <!--插入Course-->
+    <insert id= "insertCourse">
+        insert into "Course"(
+        id,
+        name,
+        goal
+        )
+        values(
+        #{id},
+        #{name},
+        #{goal}
+        )
+    </insert>
+
+    <!--更新Course-->
+    <update id="updateCourse"
+            parameterType="com.example.demo.domain.Course">
+        update Course
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name}
+            </if>
+            <if test="goal != null and goal != ''">
+                goal = #{goal}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>
