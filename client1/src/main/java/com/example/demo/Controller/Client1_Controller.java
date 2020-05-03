@@ -60,7 +60,7 @@ public class Client1_Controller {
 //            System.out.println("收到前置拦截器的值，test=" + test);
         }
 
-        String result = testService.testSource();
+        String result = testService.testTransactional();
         System.out.println("result=" + result);
         return result;
 //        throw new RuntimeException("getUserById command failed");

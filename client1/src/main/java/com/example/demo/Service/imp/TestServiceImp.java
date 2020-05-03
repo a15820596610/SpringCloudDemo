@@ -6,6 +6,7 @@ import com.example.demo.dao.orcl.CourseDao;
 import com.example.demo.domain.Course;
 import com.example.demo.domain.Mayubin;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+//import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,7 +71,7 @@ public class TestServiceImp implements TestService {
         return "成功";
     }
 
-
+//    @GlobalTransactional(rollbackFor={Exception.class})
     @Override
     @Transactional(rollbackFor={Exception.class})
     public String testTransactional(){
@@ -82,11 +83,13 @@ public class TestServiceImp implements TestService {
         System.out.println("更新mayubin表（ID=" + 1 + "）：name=" + name);
         mayubinDao.updateMayubin(mayubin);
 
-        mayubin.setId(2);
-        mayubin.setName(name);
-        System.out.println("更新mayubin表（ID=" + 2 + "）：name=" + name);
-        mayubinDao.updateMayubin(mayubin);
+        Course course = new Course();
+        course.setId(1);
+        course.setGoal(name);
+        System.out.println("更新Course表（ID=" + 1 + "）：goal=" + name);
+        courseDao.updateCourse(course);
 
+        int a = 1/0;
         return "aa";
     }
 
